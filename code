@@ -1,0 +1,116 @@
+package java3;
+import java.util.Scanner;
+ abstract class GeometricObject {
+	  private String color = "white";
+	  private boolean filled;
+	  private java.util.Date dateCreated;
+
+	 
+	  protected GeometricObject() {
+	    dateCreated = new java.util.Date();
+	  }
+
+	  
+	  protected GeometricObject(String color, boolean filled) {
+	    dateCreated = new java.util.Date();
+	    this.color = color;
+	    this.filled = filled;
+	  }
+
+	  /** Return color */
+	  public String getColor() {
+	    return color;
+	  }
+
+	  /** Set a new color */
+	  public void setColor(String color) {
+	    this.color = color;
+	  }
+
+	  /** Return filled. Since filled is boolean,
+	   *  the get method is named isFilled */
+	  public boolean isFilled() {
+	    return filled;
+	  }
+
+	  /** Set a new filled */
+	  public void setFilled(boolean filled) {
+	    this.filled = filled;
+	  }
+
+	  /** Get dateCreated */
+	  public java.util.Date getDateCreated() {
+	    return dateCreated;
+	  }
+
+	  @Override
+	  public String toString() {
+	    return "created on " + dateCreated + "\ncolor: " + color +
+	      " and filled: " + filled;
+	  }
+
+	  /** Abstract method getArea */
+	  public abstract double getArea();
+
+	  /** Abstract method getPerimeter */
+	  public abstract double getPerimeter();
+	}
+class Triangle extends GeometricObject{
+private double s1=1.0;
+private double s2=1.0;
+private double s3=1.0;
+public double getArea(){
+double p;
+p=(s1+s2+s3)/2;
+return Math.sqrt(p*(p-s1)*(p-s2)*(p-s3));
+}/*@override海伦公式*/
+public double getPerimeter(){
+return s1+s2+s3;
+}/*@overrode*/
+Triangle(){};
+Triangle(double x1,double x2,double x3){
+s1=x1;
+s2=x2;
+s3=x3;
+}
+public String toString(){
+return "side1= "+s1+" side2= "+s2+" side3= "+s3;
+}
+}
+public class Java3 {
+
+    
+    public static void main(String[] args) {
+        Triangle test1=new Triangle();
+        System.out.println("构造一个默认三角形");
+        System.out.println("三角形面积="+test1.getArea()+" 三角形周长 
+="+test1.getPerimeter());
+         System.out.println(test1.toString());
+        System.out.println("请输入三角形三条边构造新三角形");
+        
+        Scanner input=new Scanner(System.in);
+        double x1,x2,x3;
+        x1=input.nextDouble();
+        x2=input.nextDouble();
+        x3=input.nextDouble();
+        Triangle test2=new Triangle(x1,x2,x3);
+         System.out.println("三角形面积="+test2.getArea()+" 三角形周长 
+="+test2.getPerimeter());
+         System.out.println(test2.toString());
+         String color;
+         boolean i;
+         System.out.println("输入颜色及是否填满");
+        
+         color=input.next();
+          i=input.nextBoolean();
+         test2.setColor(color);
+         test2.setFilled(i);
+         System.out.println("颜色 ="+test2.getColor()+" 是否填满  
+"+test2.isFilled());
+         
+             
+                
+    } 
+    
+}
+
